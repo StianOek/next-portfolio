@@ -1,26 +1,201 @@
 @import "tailwindcss";
 
+/* Light mode - Minimalistisk med røde accenter */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Bakgrunner */
+  --background: #fafafa;           /* Hovedbakgrunn for hele siden */
+  --secondary: #f5f5f5;            /* Sekundær bakgrunn for seksjoner */
+  --card-bg: #ffffff;              /* Bakgrunn for kort/cards */
+  
+  /* Tekst */
+  --foreground: #0a0a0a;           /* Hovedtekst */
+  --muted: #737373;                /* Dempet tekst (beskrivelser) */
+  --muted-light: #a3a3a3;          /* Ekstra dempet tekst */
+  
+  /* Primærfarge (brand) - Rød accent */
+  --primary: #dc2626;              /* Primærfarge - knapper, lenker, accenter */
+  --primary-hover: #b91c1c;        /* Primærfarge hover state */
+  
+  /* Knapper */
+  --btn-primary-bg: #dc2626;       /* Primærknapp bakgrunn */
+  --btn-primary-hover: #b91c1c;    /* Primærknapp hover */
+  --btn-primary-text: #ffffff;     /* Primærknapp tekst */
+  --btn-secondary-bg: transparent; /* Sekundærknapp bakgrunn */
+  --btn-secondary-hover: #f5f5f5;  /* Sekundærknapp hover */
+  --btn-secondary-text: #0a0a0a;   /* Sekundærknapp tekst */
+  --btn-secondary-border: #e5e5e5; /* Sekundærknapp border */
+  
+  /* Ikoner */
+  --icon-primary: #dc2626;         /* Primære ikoner */
+  --icon-secondary: #737373;       /* Sekundære ikoner */
+  --icon-muted: #a3a3a3;           /* Dempede ikoner */
+  
+  /* Borders og dividers */
+  --border: #e5e5e5;               /* Standard border farge */
+  --secondary-hover: #f0f0f0;      /* Hover state for sekundære elementer */
+  
+  /* Accent */
+  --accent: #ea580c;               /* Accent farge for spesielle elementer */
+  
+  /* Hero gradient */
+  --hero-gradient: linear-gradient(135deg, #fafafa 0%, #f5f5f5 50%, #f0f0f0 100%);
+}
+
+/* Dark mode - Svart med røde accenter */
+.dark {
+  /* Bakgrunner - dyp svart */
+  --background: #0a0a0a;           /* Hovedbakgrunn for hele siden */
+  --secondary: #141414;            /* Sekundær bakgrunn for seksjoner */
+  --card-bg: #1a1a1a;              /* Bakgrunn for kort/cards */
+  
+  /* Tekst */
+  --foreground: #fafafa;           /* Hovedtekst */
+  --muted: #a3a3a3;                /* Dempet tekst (beskrivelser) */
+  --muted-light: #d4d4d4;          /* Ekstra dempet tekst */
+  
+  /* Primærfarge (brand) - Rød accent */
+  --primary: #ef4444;              /* Primærfarge - knapper, lenker, accenter */
+  --primary-hover: #f87171;        /* Primærfarge hover state */
+  
+  /* Knapper */
+  --btn-primary-bg: #ef4444;       /* Primærknapp bakgrunn */
+  --btn-primary-hover: #f87171;    /* Primærknapp hover */
+  --btn-primary-text: #ffffff;     /* Primærknapp tekst */
+  --btn-secondary-bg: transparent; /* Sekundærknapp bakgrunn */
+  --btn-secondary-hover: #1f1f1f;  /* Sekundærknapp hover */
+  --btn-secondary-text: #fafafa;   /* Sekundærknapp tekst */
+  --btn-secondary-border: #262626; /* Sekundærknapp border */
+  
+  /* Ikoner */
+  --icon-primary: #ef4444;         /* Primære ikoner */
+  --icon-secondary: #a3a3a3;       /* Sekundære ikoner */
+  --icon-muted: #737373;           /* Dempede ikoner */
+  
+  /* Borders og dividers */
+  --border: #262626;               /* Standard border farge */
+  --secondary-hover: #1f1f1f;      /* Hover state for sekundære elementer */
+  
+  /* Accent */
+  --accent: #fb923c;               /* Accent farge for spesielle elementer */
+  
+  /* Hero gradient - mørk gradient */
+  --hero-gradient: linear-gradient(135deg, #0a0a0a 0%, #141414 50%, #1a1a1a 100%);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-card-bg: var(--card-bg);
+  --color-muted: var(--muted);
+  --color-muted-light: var(--muted-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Utility classes */
+.bg-page { background-color: var(--background); }
+.bg-card { background-color: var(--card-bg); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-primary { background-color: var(--primary); }
+
+.text-foreground { color: var(--foreground); }
+.text-muted { color: var(--muted); }
+.text-primary { color: var(--primary); }
+
+.border-default { border-color: var(--border); }
+
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1px solid var(--btn-secondary-border);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-hover);
+}
+
+.card {
+  background-color: var(--card-bg);
+  transition: background-color 0.3s ease;
+}
+
+.card-secondary {
+  background-color: var(--secondary);
+  transition: background-color 0.3s ease;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
