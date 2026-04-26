@@ -118,8 +118,7 @@ export default function Contact() {
               variants={staggerItem}
               whileHover={{ 
                 scale: 1.2,
-                color: 'var(--primary)',
-                transition: { duration: 0.2 }
+                color: 'var(--primary)'
               }}
               whileTap={{ scale: 0.9 }}
             >

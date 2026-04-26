@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -35,34 +37,92 @@ export default function ThemeToggle() {
   if (!mounted) return null;
 
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 rounded-full backdrop-blur-sm border transition-all shadow-lg"
+      className="fixed top-6 right-6 z-50 w-16 h-16 rounded-full overflow-hidden border-2 shadow-lg cursor-pointer"
       style={{
         backgroundColor: 'var(--card-bg)',
         borderColor: 'var(--border)',
       }}
-      aria-label="Toggle theme"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      animate={{
+        scale: [1, 1.05, 1],
+        rotate: [0, 2, -2, 0]
+      }}
+      transition={{
+        scale: {
+          duration: 2,
+          repeat: Infinity,
+          repeatDelay: 3,
+          ease: "easeInOut"
+        },
+        rotate: {
+          duration: 0.6,
+          repeat: Infinity,
+          repeatDelay: 4.4,
+          ease: "easeInOut"
+        }
+      }}
+      aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
     >
-      {theme === 'dark' ? (
-        <svg 
-          className="w-5 h-5" 
-          style={{ color: 'var(--icon-primary)' }}
-          fill="currentColor" 
-          viewBox="0 0 20 20"
-        >
-          <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-        </svg>
-      ) : (
-        <svg 
-          className="w-5 h-5" 
-          style={{ color: 'var(--icon-primary)' }}
-          fill="currentColor" 
-          viewBox="0 0 20 20"
-        >
-          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-        </svg>
-      )}
-    </button>
+      <AnimatePresence mode="wait">
+        {theme === 'light' ? (
+          <motion.div
+            key="awake"
+            className="w-full h-full relative flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.8, rotate: -180 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.8, rotate: 180 }}
+            transition={{ 
+              duration: 0.5, 
+              ease: [0.22, 1, 0.36, 1] 
+            }}
+          >
+            <Image
+              src="/me_awake.svg"
+              alt="Switch to dark mode"
+              width={64}
+              height={64}
+              quality={100}
+              priority
+              unoptimized
+              className="w-full h-full object-cover object-center"
+              style={{ 
+                imageRendering: 'pixelated',
+                filter: 'contrast(1.1) saturate(1.1)'
+              }}
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="asleep"
+            className="w-full h-full relative flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.8, rotate: -180 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.8, rotate: 180 }}
+            transition={{ 
+              duration: 0.5, 
+              ease: [0.22, 1, 0.36, 1] 
+            }}
+          >
+            <Image
+              src="/me_asleep.svg"
+              alt="Switch to light mode"
+              width={64}
+              height={64}
+              quality={100}
+              priority
+              unoptimized
+              className="w-full h-full object-cover object-center"
+              style={{ 
+                imageRendering: 'pixelated',
+                filter: 'contrast(1.1) saturate(1.1)'
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
   );
 }

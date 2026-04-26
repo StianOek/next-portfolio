@@ -138,11 +138,7 @@ export const staggerItem: Variants = {
 
 // Hover scale effect
 export const hoverScale = {
-  scale: 1.05,
-  transition: {
-    duration: 0.3,
-    ease: "easeOut"
-  }
+  scale: 1.05
 };
 
 // Tap scale effect
