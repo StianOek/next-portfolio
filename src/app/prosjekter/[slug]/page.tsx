@@ -1,18 +1,27 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Icon from '@/components/Icon';
 import { getProjectBySlug } from '@/data/projects';
 
+type ImageFilter = 'desktop' | 'mobile';
+
 export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
   const project = getProjectBySlug(slug);
+  const [imageFilter, setImageFilter] = useState<ImageFilter>('desktop');
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+
+  const handleImageLoad = (imageSrc: string) => {
+    setLoadedImages(prev => new Set(prev).add(imageSrc));
+  };
 
   if (!project) {
     return (
@@ -31,6 +40,19 @@ export default function ProjectDetailPage() {
       </>
     );
   }
+
+  // Determine which images to show based on filter
+  const displayImages = imageFilter === 'mobile' && project.mobileImages 
+    ? project.mobileImages 
+    : project.images;
+
+  // Check if project has mobile images
+  const hasMobileImages = project.mobileImages && project.mobileImages.length > 0;
+
+  // For gallery, show all images (don't skip first one for mobile since they're separate)
+  const galleryImages = imageFilter === 'mobile' && project.mobileImages
+    ? project.mobileImages // Show all mobile images
+    : project.images.slice(1); // Skip first desktop image (it's the hero)
 
   return (
     <>
@@ -122,13 +144,29 @@ export default function ProjectDetailPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-20"
           >
-            <div className="relative w-full aspect-video rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden border" style={{ 
+              borderColor: 'var(--border)',
+              backgroundColor: 'var(--secondary)'
+            }}>
+              {/* Loading Skeleton for Hero */}
+              {!loadedImages.has(project.heroImage) && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="animate-pulse flex flex-col items-center gap-3">
+                    <div className="w-12 h-12 border-3 border-primary border-t-transparent rounded-full animate-spin" />
+                    <p className="text-sm font-medium" style={{ color: 'var(--muted)' }}>Laster hero bilde...</p>
+                  </div>
+                </div>
+              )}
+              
               <Image
                 src={project.heroImage}
                 alt={project.title}
                 fill
-                className="object-cover"
+                className={`object-cover ${
+                  loadedImages.has(project.heroImage) ? 'opacity-100' : 'opacity-0'
+                } transition-opacity duration-500`}
                 priority
+                onLoad={() => handleImageLoad(project.heroImage)}
               />
             </div>
           </motion.div>
@@ -136,29 +174,20 @@ export default function ProjectDetailPage() {
           {/* Content Sections */}
           <div className="space-y-20">
             {/* About */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <section>
               <h2 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: 'var(--muted)' }}>
                 Om prosjektet
               </h2>
               <p className="text-lg leading-relaxed max-w-3xl">
                 {project.longDescription}
               </p>
-            </motion.section>
+            </section>
 
             {/* Divider */}
             <div className="w-full h-px" style={{ backgroundColor: 'var(--border)' }} />
 
             {/* Details Grid */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-12"
-            >
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {/* Year */}
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--muted)' }}>
@@ -190,41 +219,98 @@ export default function ProjectDetailPage() {
                     ))}
                 </div>
               </div>
-            </motion.section>
+            </section>
 
             {/* Additional Images */}
-            {project.images.length > 1 && (
+            {(project.images.length > 1 || hasMobileImages) && (
               <>
                 <div className="w-full h-px" style={{ backgroundColor: 'var(--border)' }} />
                 
-                <motion.section
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  className="space-y-8"
-                >
-                  <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
-                    Flere bilder
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {project.images.slice(1).map((image, index) => (
+                <section className="space-y-8">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
+                      Flere bilder
+                    </h2>
+                    
+                    {/* Filter Buttons */}
+                    {hasMobileImages && (
+                      <div className="flex gap-2">
+                        <motion.button
+                          onClick={() => setImageFilter('desktop')}
+                          className="px-4 py-2 text-xs font-medium rounded-lg transition-all cursor-pointer"
+                          style={{
+                            backgroundColor: imageFilter === 'desktop' ? 'var(--primary)' : 'var(--secondary)',
+                            color: imageFilter === 'desktop' ? 'var(--btn-primary-text)' : 'var(--muted)',
+                          }}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          Desktop
+                        </motion.button>
+                        <motion.button
+                          onClick={() => setImageFilter('mobile')}
+                          className="px-4 py-2 text-xs font-medium rounded-lg transition-all cursor-pointer"
+                          style={{
+                            backgroundColor: imageFilter === 'mobile' ? 'var(--primary)' : 'var(--secondary)',
+                            color: imageFilter === 'mobile' ? 'var(--btn-primary-text)' : 'var(--muted)',
+                          }}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          Mobile
+                        </motion.button>
+                      </div>
+                    )}
+                  </div>
+
+                  <AnimatePresence mode="wait">
+                    <motion.div 
+                      className={`grid grid-cols-1 ${
+                        imageFilter === 'mobile' ? 'md:grid-cols-4 gap-3' : 'md:grid-cols-2 gap-6'
+                      }`}
+                      key={imageFilter}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                    {galleryImages.map((image, index) => (
                       <motion.div
-                        key={index}
-                        className="relative aspect-video rounded-lg overflow-hidden border"
-                        style={{ borderColor: 'var(--border)' }}
+                        key={`${imageFilter}-${index}`}
+                        className={`relative rounded-lg overflow-hidden border ${
+                          imageFilter === 'mobile' ? ' max-w-[200px] mx-auto' : 'aspect-video'
+                        }`}
+                        style={{ 
+                          borderColor: 'var(--border)',
+                          backgroundColor: 'var(--secondary)'
+                        }}
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <Image
+                        {/* Loading Skeleton */}
+                        {!loadedImages.has(image) && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="animate-pulse flex flex-col items-center gap-2">
+                              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                              <p className="text-xs" style={{ color: 'var(--muted)' }}>Laster bilde...</p>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={image}
-                          alt={`${project.title} screenshot ${index + 1}`}
-                          fill
-                          className="object-cover"
+                          alt={`${project.title} ${imageFilter} screenshot ${index + 1}`}
+                          className={`w-full h-full ${imageFilter === 'mobile' ? 'object-contain' : 'object-cover'} ${
+                            loadedImages.has(image) ? 'opacity-100' : 'opacity-0'
+                          } transition-opacity duration-300`}
+                          onLoad={() => handleImageLoad(image)}
                         />
                       </motion.div>
                     ))}
-                  </div>
-                </motion.section>
+                  </motion.div>
+                  </AnimatePresence>
+                </section>
               </>
             )}
           </div>

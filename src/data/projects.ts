@@ -1,3 +1,5 @@
+import { getScreenshotUrl } from '@/utils/screenshot';
+
 export interface Project {
   slug: string;
   title: string;
@@ -8,6 +10,7 @@ export interface Project {
   tags: string[];
   heroImage: string;
   images: string[];
+  mobileImages?: string[]; // New: separate mobile images
   features: string[];
   technologies: {
     frontend: string[];
@@ -17,6 +20,7 @@ export interface Project {
   year: string;
   role: string;
   githubUrl?: string;
+  useDynamicScreenshot?: boolean; // New option
 }
 
 export const projects: Project[] = [
@@ -28,13 +32,22 @@ export const projects: Project[] = [
     longDescription: 'Zeipt er en innovativ kvitteringsløsning som revolusjonerer måten vi håndterer digitale kvitteringer på. Plattformen kobler sømløst sammen banker, regnskapssystemer og lojalitetsprogrammer i ett samlet økosystem, og leverer automatisk detaljerte kvitteringer direkte til bankapper. Med Zeipt får både forbrukere og bedrifter full oversikt og kontroll over alle transaksjoner.',
     url: 'https://zeipt.com',
     tags: ['Next.js', 'Tailwind', 'TypeScript'],
-    heroImage: '/zeipt_hero.png',
+    heroImage: getScreenshotUrl('https://zeipt.com'),
     images: [
-      '/zeipt_hero.png',
-      '/zeipt_dashboard.png',
-      '/zeipt_receipt.png',
-      '/zeipt_trusted.png',
+      getScreenshotUrl('https://zeipt.com'),
+      getScreenshotUrl('https://zeipt.com/about'),
+      getScreenshotUrl('https://zeipt.com/locations'),
+      getScreenshotUrl('https://zeipt.com/news'),
+      getScreenshotUrl('https://zeipt.com/revenue-share'),
     ],
+    mobileImages: [
+      getScreenshotUrl('https://zeipt.com', { device: 'mobile' }),
+      getScreenshotUrl('https://zeipt.com/about', { device: 'mobile' }),
+      getScreenshotUrl('https://zeipt.com/locations', { device: 'mobile' }),
+      getScreenshotUrl('https://zeipt.com/news', { device: 'mobile' }),
+      getScreenshotUrl('https://zeipt.com/revenue-share', { device: 'mobile' }),
+    ],
+    useDynamicScreenshot: true,
     features: [
       'Automatisk kvitteringslevering til bankapper',
       'Integrasjon med regnskapssystemer',
@@ -57,13 +70,14 @@ export const projects: Project[] = [
     subtitle: 'Receipt Management System',
     description: 'Komplett dashboard for administrasjon og håndtering av digitale kvitteringer.',
     longDescription: 'Zeipt Dashboard er et kraftig administrasjonsverktøy som gir brukere full kontroll over sine digitale kvitteringer. Med avanserte filtreringsmuligheter, søkefunksjonalitet og detaljert statistikk, gjør dashboardet det enkelt å holde oversikt over alle transaksjoner. Systemet er bygget med fokus på ytelse og brukervennlighet.',
-    url: '#',
+    url: 'https://dashboard.zeipt.com',
     tags: ['React', 'TanStack Query', 'Tailwind'],
-    heroImage: '/zeipt_dashboard.png',
+    heroImage: getScreenshotUrl('https://dashboard.zeipt.com'),
     images: [
-      '/zeipt_dashboard.png',
+      getScreenshotUrl('https://dashboard.zeipt.com'),
       '/zeipt_receipt.png',
     ],
+    useDynamicScreenshot: true,
     features: [
       'Oversikt over alle kvitteringer',
       'Avansert søk og filtrering',
@@ -117,12 +131,20 @@ export const projects: Project[] = [
     longDescription: 'Ihlen Sosiale Løpeklubb er en inkluderende løpeklubb som samler løpere av alle nivåer i Indre Østfold. Med fokus på fellesskap, løpeglede og sosiale sammenkomster, tilbyr klubben ukentlige løpeturer etterfulgt av kaffe og hygge. Nettstedet gir medlemmer og interesserte full oversikt over aktiviteter, arrangementer og klubbinformasjon.',
     url: 'https://ihlenslk.no',
     tags: ['Next.js', 'Neon', 'Tailwind'],
-    heroImage: '/ihlenslk_hero.png',
+    heroImage: getScreenshotUrl('https://ihlenslk.no'),
     images: [
-      '/ihlenslk_hero.png',
-      '/ihlenslk_klubb.png',
-      '/ihlenslk_blogg.png',
+      getScreenshotUrl('https://ihlenslk.no'),
+      getScreenshotUrl('https://ihlenslk.no/om-oss'),
+      getScreenshotUrl('https://ihlenslk.no/ihlenrundt'),
+      getScreenshotUrl('https://ihlenslk.no/blog'),
     ],
+    mobileImages: [
+      getScreenshotUrl('https://ihlenslk.no', { device: 'mobile' }),
+      getScreenshotUrl('https://ihlenslk.no/om-oss', { device: 'mobile' }),
+      getScreenshotUrl('https://ihlenslk.no/ihlenrundt', { device: 'mobile' }),
+      getScreenshotUrl('https://ihlenslk.no/blog', { device: 'mobile' }),
+    ],
+    useDynamicScreenshot: true,
     features: [
       'Aktivitetskalender',
       'Medlemsregistrering',
