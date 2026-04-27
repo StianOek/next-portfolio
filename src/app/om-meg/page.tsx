@@ -31,7 +31,7 @@ export default function OmMegPage() {
                 <span style={{ color: 'var(--primary)' }}>
                   Stian Ihler
                 </span>
-                . Jeg bor i Norge, hvor jeg designer fremtiden.
+                . Jeg bor i Østfold, hvor jeg designer fremtiden.
               </motion.h1>
 
               {/* Description */}
@@ -44,11 +44,11 @@ export default function OmMegPage() {
               >
                 <p>
                   Jeg har jobbet med en rekke prosjekter gjennom årene og er stolt av fremgangen jeg har gjort. 
-                  Mange av disse prosjektene er open source og tilgjengelige for andre å utforske og bidra til.
+                  Mange av disse prosjektene er gjort for Zeipt AS, en bedrift som har bidratt til min karriære og som jeg er stolt av. Jeg jobber også som freelance for små bedrifter ved siden av.
                 </p>
                 <p>
                   Hvis du er interessert i noen av prosjektene jeg har jobbet med, kan du gjerne sjekke ut koden 
-                  og foreslå eventuelle forbedringer eller forbedringer du synes kan være nyttige.
+                  og foreslå eventuelle forbedringer eller endringer som kan være nyttige. Det er kult!
                 </p>
                 <p>
                   Samarbeid med andre er en fin måte å lære og vokse på, og jeg er alltid åpen for nye ideer og tilbakemeldinger.

@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Icon from '@/components/Icon';
 import { getProjectBySlug } from '@/data/projects';
-import { staggerContainer, staggerItem, viewportOptions } from '@/utils/animations';
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -22,7 +22,7 @@ export default function ProjectDetailPage() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl font-bold mb-4">Prosjekt ikke funnet</h1>
             <Link href="/prosjekter">
-              <button className="btn-primary px-6 py-3 rounded-lg">
+              <button className="btn-primary px-6 py-3 rounded-lg cursor-pointer">
                 Tilbake til prosjekter
               </button>
             </Link>
@@ -36,67 +36,93 @@ export default function ProjectDetailPage() {
     <>
       <Navbar />
       <main className="min-h-screen bg-page pt-32 pb-20">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8"
+            className="mb-12"
           >
             <Link href="/prosjekter">
               <motion.button
-                className="flex items-center gap-2 text-muted hover:text-foreground transition-colors"
-                whileHover={{ x: -5 }}
+                className="flex items-center gap-2 text-sm transition-colors"
+                style={{ color: 'var(--muted)' }}
+                whileHover={{ x: -5, color: 'var(--foreground)' }}
               >
                 <span>←</span>
-                <span>Tilbake til prosjekter</span>
+                <span>Tilbake</span>
               </motion.button>
             </Link>
           </motion.div>
 
-          {/* Hero Section */}
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12"
+            className="mb-16"
           >
-            <div className="mb-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
-                {project.title}
-              </h1>
-              <p className="text-xl text-muted mb-4">{project.subtitle}</p>
-              <div className="flex flex-wrap gap-3 mb-6">
-                {project.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 text-sm font-medium rounded-full"
-                    style={{
-                      backgroundColor: 'var(--secondary)',
-                      color: 'var(--foreground)'
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4">
+              {project.title}
+            </h1>
+            <p className="text-xl md:text-2xl mb-8" style={{ color: 'var(--muted)' }}>
+              {project.subtitle}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 mb-8">
+              <motion.a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-6 py-3 rounded-lg font-medium cursor-pointer inline-flex items-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Besøk nettside</span>
+                <span>→</span>
+              </motion.a>
+              {project.githubUrl && (
                 <motion.a
-                  href={project.url}
+                  href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary px-6 py-3 rounded-lg font-medium"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="btn-secondary px-6 py-3 rounded-lg font-medium cursor-pointer inline-flex items-center gap-2"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  Besøk nettside →
+                  <Icon name="github" size={18} />
+                  <span>Kildekode</span>
                 </motion.a>
-              </div>
+              )}
             </div>
 
-            {/* Hero Image */}
-            <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 text-xs font-medium rounded-full"
+                  style={{
+                    backgroundColor: 'var(--secondary)',
+                    color: 'var(--muted)',
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-20"
+          >
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
               <Image
                 src={project.heroImage}
                 alt={project.title}
@@ -107,64 +133,87 @@ export default function ProjectDetailPage() {
             </div>
           </motion.div>
 
-          {/* Project Info Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-12">
-              {/* Description */}
-              <motion.section
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <h2 className="text-3xl font-bold mb-4">Om prosjektet</h2>
-                <p className="text-lg text-muted leading-relaxed">
-                  {project.longDescription}
-                </p>
-              </motion.section>
+          {/* Content Sections */}
+          <div className="space-y-20">
+            {/* About */}
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h2 className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: 'var(--muted)' }}>
+                Om prosjektet
+              </h2>
+              <p className="text-lg leading-relaxed max-w-3xl">
+                {project.longDescription}
+              </p>
+            </motion.section>
 
-              {/* Features */}
-              <motion.section
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <h2 className="text-3xl font-bold mb-6">Funksjoner</h2>
-                <motion.div
-                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                  variants={staggerContainer}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {project.features.map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      variants={staggerItem}
-                      className="flex items-start gap-3 p-4 rounded-lg"
-                      style={{ backgroundColor: 'var(--secondary)' }}
-                    >
-                      <span className="text-primary text-xl">✓</span>
-                      <span className="text-muted">{feature}</span>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </motion.section>
+            {/* Divider */}
+            <div className="w-full h-px" style={{ backgroundColor: 'var(--border)' }} />
 
-              {/* Image Gallery */}
-              {project.images.length > 1 && (
+            {/* Details Grid */}
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-12"
+            >
+              {/* Year */}
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--muted)' }}>
+                  År
+                </h3>
+                <p className="text-base">{project.year}</p>
+              </div>
+
+              {/* Role */}
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--muted)' }}>
+                  Rolle
+                </h3>
+                <p className="text-base">{project.role}</p>
+              </div>
+
+              {/* Tech Stack */}
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--muted)' }}>
+                  Teknologier
+                </h3>
+                <div className="space-y-1">
+                  {[...project.technologies.frontend, ...project.technologies.backend, ...project.technologies.other]
+                    .slice(0, 5)
+                    .map((tech, index) => (
+                      <p key={index} className="text-sm" style={{ color: 'var(--muted)' }}>
+                        {tech}
+                      </p>
+                    ))}
+                </div>
+              </div>
+            </motion.section>
+
+            {/* Additional Images */}
+            {project.images.length > 1 && (
+              <>
+                <div className="w-full h-px" style={{ backgroundColor: 'var(--border)' }} />
+                
                 <motion.section
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="space-y-8"
                 >
-                  <h2 className="text-3xl font-bold mb-6">Bilder</h2>
+                  <h2 className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--muted)' }}>
+                    Flere bilder
+                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {project.images.slice(1).map((image, index) => (
                       <motion.div
                         key={index}
-                        className="relative h-64 rounded-xl overflow-hidden"
+                        className="relative aspect-video rounded-lg overflow-hidden border"
+                        style={{ borderColor: 'var(--border)' }}
                         whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.2 }}
                       >
                         <Image
                           src={image}
@@ -176,100 +225,8 @@ export default function ProjectDetailPage() {
                     ))}
                   </div>
                 </motion.section>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-8">
-              {/* Project Details */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="card p-6 rounded-xl border border-default"
-              >
-                <h3 className="text-xl font-bold mb-4">Prosjektdetaljer</h3>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm text-muted mb-1">År</p>
-                    <p className="font-medium">{project.year}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted mb-1">Rolle</p>
-                    <p className="font-medium">{project.role}</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Technologies */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="card p-6 rounded-xl border border-default"
-              >
-                <h3 className="text-xl font-bold mb-4">Teknologier</h3>
-                <div className="space-y-4">
-                  {project.technologies.frontend.length > 0 && (
-                    <div>
-                      <p className="text-sm text-muted mb-2">Frontend</p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.frontend.map((tech, index) => (
-                          <span
-                            key={index}
-                            className="px-3 py-1 text-xs rounded-full"
-                            style={{
-                              backgroundColor: 'var(--secondary)',
-                              color: 'var(--foreground)'
-                            }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {project.technologies.backend.length > 0 && (
-                    <div>
-                      <p className="text-sm text-muted mb-2">Backend</p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.backend.map((tech, index) => (
-                          <span
-                            key={index}
-                            className="px-3 py-1 text-xs rounded-full"
-                            style={{
-                              backgroundColor: 'var(--secondary)',
-                              color: 'var(--foreground)'
-                            }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {project.technologies.other.length > 0 && (
-                    <div>
-                      <p className="text-sm text-muted mb-2">Annet</p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.other.map((tech, index) => (
-                          <span
-                            key={index}
-                            className="px-3 py-1 text-xs rounded-full"
-                            style={{
-                              backgroundColor: 'var(--secondary)',
-                              color: 'var(--foreground)'
-                            }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </main>

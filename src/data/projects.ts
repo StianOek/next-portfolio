@@ -16,6 +16,7 @@ export interface Project {
   };
   year: string;
   role: string;
+  githubUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -137,6 +138,7 @@ export const projects: Project[] = [
     },
     year: '2024',
     role: 'Fullstack Developer & Designer',
+    githubUrl: 'https://github.com/StianOek/islk-nextjs-app',
   },
 ];
 
