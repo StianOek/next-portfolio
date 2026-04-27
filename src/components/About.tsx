@@ -5,7 +5,7 @@ import { staggerContainer, staggerItem, viewportOptions } from '@/utils/animatio
 
 export default function About() {
   return (
-    <section className="py-20 px-6 bg-secondary">
+    <section id="about" className="py-20 px-6 bg-secondary">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16"

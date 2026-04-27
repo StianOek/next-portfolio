@@ -6,6 +6,7 @@ import { slideInFromLeft, slideInFromRight, heroStaggerContainer } from '@/utils
 export default function Hero() {
   return (
     <section 
+      id="hero"
       className="min-h-screen flex items-center justify-center px-6"
       style={{ background: 'var(--hero-gradient)' }}
     >

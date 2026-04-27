@@ -13,7 +13,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 px-6 bg-page">
+    <section className="py-20 px-6 bg-page pb-32 md:pb-20">
       <motion.div 
         className="max-w-2xl mx-auto text-center"
         variants={staggerContainer}

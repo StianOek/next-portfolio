@@ -1,47 +1,20 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { staggerContainer, staggerItem, hoverScale, tapScale, viewportOptions } from '@/utils/animations';
+import { Project } from '@/data/projects';
 
-const projects = [
-  {
-    title: 'Zeipt',
-    subtitle: 'Home of the smart receipt',
-    description: 'Smart kvitteringsløsning som kobler banker, regnskapssystemer og lojalitetsprogrammer i ett samlet økosystem. Automatisk levering av detaljerte kvitteringer direkte til bankapper.',
-    url: 'https://zeipt.com',
-    tags: ['Next.js', 'Tailwind'],
-    image: '/zeipt_hero.png',
-  },
-  {
-    title: 'Zeipt Dashboard',
-    subtitle: 'Receipt Management System',
-    description: 'Komplett dashboard for administrasjon og håndtering av digitale kvitteringer. Gir brukere full oversikt og kontroll over alle sine kvitteringer på ett sted.',
-    url: '#',
-    tags: ['React', 'TanStack Query', 'Tailwind'],
-    image: '/zeipt_dashboard.png',
-  },
-  {
-    title: 'Zeipt Receipt View',
-    subtitle: 'Smart Receipt Viewer',
-    description: 'Moderne kvitteringsvisning med detaljert informasjon og interaktiv design. Viser alle produkter, priser og betalingsinformasjon på en oversiktlig måte.',
-    url: 'https://view.zeipt.dev/users/019c052d-9486-8010-b4e7-66a5ce937580/receipts/019c052d-9486-8007-95a0-8496592d4928?email=sebastian%40zeipt.com',
-    tags: ['Next.js', 'SCSS', 'TanStack Query'],
-    image: '/zeipt_receipt.png',
-  },
-  {
-    title: 'Ihlen Sosiale Løpeklubb',
-    subtitle: 'Din lokale løpeklubb i Indre Østfold',
-    description: 'Lavterskel løpeklubb med fokus på løpeglede, fellesskap og kaffe etterpå. Vi samles hver uke for en fin løpetur hvor alle nivåer er velkomne.',
-    url: 'https://ihlenslk.no',
-    tags: ['Next.js', 'Neon', 'Tailwind'],
-    image: '/ihlenslk_hero.png',
-  },
-];
+interface ProjectsProps {
+  projects: Project[];
+  showAll?: boolean;
+  noPadding?: boolean;
+}
 
-export default function Projects() {
+export default function Projects({ projects, showAll = false, noPadding = false }: ProjectsProps) {
   return (
-    <section className="py-20 px-6 bg-page">
+    <section id="projects" className={`px-6 bg-page ${noPadding ? '' : 'py-20'}`}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16"
@@ -67,19 +40,17 @@ export default function Projects() {
             <motion.div
               key={index}
               variants={staggerItem}
-              whileHover={hoverScale}
-              whileTap={tapScale}
-              className="card rounded-2xl overflow-hidden border border-default transition-all duration-300 hover:shadow-lg group"
+              className="card rounded-2xl overflow-hidden border border-default transition-all duration-300 hover:shadow-lg"
               style={{ borderColor: 'var(--border)' }}
             >
               <div 
                 className="relative h-64 flex flex-col items-center justify-center overflow-hidden"
               >
                 <Image
-                  src={project.image}
+                  src={project.heroImage}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
@@ -96,18 +67,16 @@ export default function Projects() {
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, tagIndex) => (
-                    <motion.span
+                    <span
                       key={tagIndex}
                       className="px-3 py-1 text-xs font-medium rounded-full"
                       style={{
                         backgroundColor: 'var(--secondary)',
                         color: 'var(--foreground)'
                       }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
                     >
                       {tag}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
                 <div className="flex gap-4">
@@ -115,24 +84,46 @@ export default function Projects() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary px-4 py-2 rounded-lg text-sm font-medium inline-block"
+                    className="btn-primary px-4 py-2 rounded-lg text-sm font-medium inline-block cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     Besøk nettside
                   </motion.a>
-                  <motion.button 
-                    className="btn-secondary px-4 py-2 rounded-lg text-sm font-medium"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Les mer
-                  </motion.button>
+                  <Link href={`/prosjekter/${project.slug}`}>
+                    <motion.button 
+                      className="btn-secondary px-4 py-2 rounded-lg text-sm font-medium cursor-pointer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Les mer
+                    </motion.button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
+
+        {!showAll && (
+          <motion.div
+            className="mt-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOptions}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Link href="/prosjekter">
+              <motion.button
+                className="btn-primary px-8 py-3 rounded-lg text-base font-medium cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Se alle prosjekter
+              </motion.button>
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );
