@@ -15,7 +15,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-left">
-            Fullstack Utvikler
+            Fullstack & UI/UX
           </h2>
           <div className="w-20 h-1 bg-primary mt-4"></div>
         </motion.div>
@@ -34,8 +34,8 @@ export default function About() {
               variants={staggerItem}
             >
               Jeg er en <span className="text-foreground font-semibold">fullstack-utvikler</span> med 
-              mest ekspertise innen <span className="text-foreground font-semibold">frontend-utvikling</span>. 
-              Jeg brenner for å skape intuitive brukeropplevelser og har solid erfaring med{' '}
+              ekspertise innen <span className="text-foreground font-semibold">frontend-utvikling</span>. 
+              Jeg digger å skape intuitive brukeropplevelser og har solid erfaring med{' '}
               <span className="text-foreground font-semibold">UI/UX-design</span>.
             </motion.p>
 
@@ -44,7 +44,7 @@ export default function About() {
               variants={staggerItem}
             >
               Jeg har bygget skalerbare, sikre og pålitelige webapplikasjoner 
-              med forskjellige moderne rammeverk og teknologier. Når det kommer til backend, 
+              med forskjellige moderne rammeverk og teknologier. På backend
               har jeg det gøy med <span className="text-foreground font-semibold">Node.js</span>-utvikling, 
               spesielt når jeg skal implementere autentisering, bygge API-er, eller lage 
               bloggfunksjonalitet.
