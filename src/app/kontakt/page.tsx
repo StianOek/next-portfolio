@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Icon from '@/components/Icon';
+import ContactForm from '@/components/ContactForm';
 import { CONTACT } from '@/constants/contact';
 
 export default function KontaktPage() {
@@ -26,7 +27,7 @@ export default function KontaktPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
               >
-                La oss komme i kontakt: Måter å koble til meg
+                La oss komme i kontakt
               </motion.h1>
 
               <motion.div
@@ -38,46 +39,19 @@ export default function KontaktPage() {
               >
                 <p>
                   Takk for din interesse i å komme i kontakt med meg. Jeg ønsker tilbakemeldinger, 
-                  spørsmål og forslag velkommen. Hvis du har et spesifikt spørsmål eller kommentar, 
-                  vennligst send meg en e-post direkte på{' '}
-                  <a
-                    href={`mailto:${CONTACT.email}`}
-                    className="font-medium transition-colors"
-                    style={{ color: 'var(--primary)' }}
-                    onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
-                    onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
-                  >
-                    {CONTACT.email}
-                  </a>
-                  . Jeg gjør mitt beste for å svare på alle meldinger innen 24 timer, selv om det 
-                  kan ta lenger tid i travle perioder.
-                </p>
-                <p>
-                  Alternativt kan du bruke kontaktskjemaet på nettstedet mitt for å komme i kontakt. 
-                  Bare fyll ut de nødvendige feltene, så kommer jeg tilbake til deg så snart som mulig. 
-                  Til slutt, hvis du foretrekker å koble til på sosiale medier, kan du finne meg på 
-                  LinkedIn og GitHub. Takk igjen for din interesse, og jeg ser frem til å høre fra deg!
+                  spørsmål og forslag velkommen. Fyll ut skjemaet under, så kommer jeg tilbake til 
+                  deg så snart som mulig.
                 </p>
               </motion.div>
             </div>
 
-            {/* Social Links */}
+            {/* Contact Form */}
             <motion.div
-              className="space-y-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <SocialLink 
-                icon="linkedin" 
-                text="Follow on LinkedIn"
-                href={CONTACT.linkedin} 
-              />
-              <SocialLink 
-                icon="github" 
-                text="Follow on GitHub"
-                href={CONTACT.github} 
-              />
+              <ContactForm />
             </motion.div>
 
             {/* Divider */}
@@ -89,23 +63,28 @@ export default function KontaktPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
             />
 
-            {/* Email Display */}
+            {/* Alternative Contact Methods */}
             <motion.div
-              className="flex items-center gap-3"
+              className="space-y-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <Icon name="email" size={20} />
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className="text-sm font-medium transition-colors"
-                style={{ color: 'var(--muted)' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--muted)'}
-              >
-                {CONTACT.email}
-              </a>
+              <h3 className="text-xl font-semibold">Andre måter å nå meg på</h3>
+
+              {/* Social Links */}
+              <div className="space-y-3">
+                <SocialLink 
+                  icon="linkedin" 
+                  text="Follow on LinkedIn"
+                  href={CONTACT.linkedin} 
+                />
+                <SocialLink 
+                  icon="github" 
+                  text="Follow on GitHub"
+                  href={CONTACT.github} 
+                />
+              </div>
             </motion.div>
           </motion.div>
         </div>

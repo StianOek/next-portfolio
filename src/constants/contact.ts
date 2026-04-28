@@ -18,5 +18,5 @@ export const PERSONAL = {
 export const SITE = {
   name: 'Stian Ihler - Portfolio',
   description: 'Fullstack utvikler & UI/UX entusiast',
-  url: 'https://stianiher.dev',
+  url: 'https://stianihler.dev',
 } as const;

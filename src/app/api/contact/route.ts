@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { Resend } from 'resend';
 import { CONTACT } from '@/constants/contact';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Validation schema matching the frontend
 const contactSchema = z.object({
@@ -16,41 +19,106 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = contactSchema.parse(body);
 
-    // TODO: Integrate with email service
-    // Options:
-    // 1. Resend (https://resend.com) - Recommended for Next.js
-    // 2. SendGrid
-    // 3. Nodemailer with SMTP
-    // 4. AWS SES
-    
-    // Example with Resend (install: npm install resend):
-    /*
-    import { Resend } from 'resend';
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    
-    await resend.emails.send({
-      from: 'kontakt@yourdomain.com',
+    // Send email using Resend
+    const result = await resend.emails.send({
+      from: 'Kontaktskjema <onboarding@resend.dev>', // Change to 'kontakt@yourdomain.com' after domain verification
       to: CONTACT.email,
+      replyTo: validatedData.email,
       subject: `Ny melding fra ${validatedData.name}`,
       html: `
-        <h2>Ny melding fra kontaktskjema</h2>
-        <p><strong>Navn:</strong> ${validatedData.name}</p>
-        <p><strong>E-post:</strong> ${validatedData.email}</p>
-        <p><strong>Melding:</strong></p>
-        <p>${validatedData.message}</p>
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+              }
+              .header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 30px;
+                border-radius: 10px 10px 0 0;
+                text-align: center;
+              }
+              .content {
+                background: #f9fafb;
+                padding: 30px;
+                border-radius: 0 0 10px 10px;
+              }
+              .field {
+                margin-bottom: 20px;
+              }
+              .label {
+                font-weight: 600;
+                color: #374151;
+                margin-bottom: 5px;
+                display: block;
+              }
+              .value {
+                color: #1f2937;
+                background: white;
+                padding: 12px;
+                border-radius: 6px;
+                border-left: 3px solid #ef4444;
+              }
+              .message-box {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+              }
+              .footer {
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid #e5e7eb;
+                font-size: 12px;
+                color: #6b7280;
+                text-align: center;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="header">
+              <h1 style="margin: 0; font-size: 24px;">📬 Ny melding fra kontaktskjema</h1>
+            </div>
+            <div class="content">
+              <div class="field">
+                <span class="label">👤 Navn:</span>
+                <div class="value">${validatedData.name}</div>
+              </div>
+              
+              <div class="field">
+                <span class="label">📧 E-post:</span>
+                <div class="value">
+                  <a href="mailto:${validatedData.email}" style="color: #ef4444; text-decoration: none;">
+                    ${validatedData.email}
+                  </a>
+                </div>
+              </div>
+              
+              <div class="field">
+                <span class="label">💬 Melding:</span>
+                <div class="value message-box">${validatedData.message}</div>
+              </div>
+              
+              <div class="footer">
+                Sendt fra stianihler.dev kontaktskjema
+              </div>
+            </div>
+          </body>
+        </html>
       `,
-      replyTo: validatedData.email,
     });
-    */
-
-    // For now, just log the data (remove this in production)
-    console.log('Contact form submission:', validatedData);
 
     // Return success response
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Message received successfully' 
+        message: 'Message sent successfully' 
       },
       { status: 200 }
     );
@@ -72,7 +140,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { 
         success: false, 
-        message: 'Internal server error' 
+        message: 'Failed to send message. Please try again.' 
       },
       { status: 500 }
     );
