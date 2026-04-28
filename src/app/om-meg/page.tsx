@@ -1,5 +1,8 @@
 'use client';
 
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
@@ -7,6 +10,35 @@ import Footer from '@/components/Footer';
 import Icon from '@/components/Icon';
 
 export default function OmMegPage() {
+  const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
+
+  useEffect(() => {
+    // Get initial theme
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    setTheme(initialTheme);
+
+    // Listen for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const isDark = document.documentElement.classList.contains('dark');
+          setTheme(isDark ? 'dark' : 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const profileImage = theme === 'dark' ? '/me_asleep.svg' : '/me_awake.svg';
+
   return (
     <>
       <Navbar />
@@ -66,14 +98,17 @@ export default function OmMegPage() {
               <div className="relative w-full max-w-md mx-auto lg:max-w-none space-y-6">
                 {/* Image Container */}
                 <div className="relative aspect-square rounded-2xl overflow-hidden">
-                  <Image
-                    src="/me_awake.png"
-                    alt="Stian Ihler working"
-                    fill
-                    className="object-cover"
-                    quality={100}
-                    priority
-                  />
+                  {theme && (
+                    <Image
+                      key={theme}
+                      src={profileImage}
+                      alt="Stian Ihler"
+                      fill
+                      className="object-cover"
+                      quality={100}
+                      priority
+                    />
+                  )}
                 </div>
                 
                 {/* Social Links - Below Image */}

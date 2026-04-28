@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { staggerContainer, staggerItem, viewportOptions } from '@/utils/animations';
 
@@ -60,7 +61,7 @@ export default function About() {
             </motion.p>
           </motion.div>
 
-          {/* Bilde kolonne - placeholder for fremtidig bilde */}
+          {/* Bilde kolonne */}
           <motion.div 
             className="relative"
             initial={{ opacity: 0, x: 30 }}
@@ -68,11 +69,14 @@ export default function About() {
             viewport={viewportOptions}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-2xl flex items-center justify-center border border-default">
-              <div className="text-center text-muted">
-                <div className="text-6xl mb-4">👨‍💻</div>
-                <p className="text-sm">Bilde kommer snart</p>
-              </div>
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-default">
+              <Image
+                src="/me_coding.svg"
+                alt="Stian Ihler coding"
+                fill
+                className="object-cover"
+                quality={100}
+              />
             </div>
           </motion.div>
         </div>
