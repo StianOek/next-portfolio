@@ -1,13 +1,12 @@
 'use client';
 
-'use client';
-
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Icon from '@/components/Icon';
+import { CONTACT } from '@/constants/contact';
 
 export default function OmMegPage() {
   const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
@@ -121,17 +120,17 @@ export default function OmMegPage() {
                   <SocialLink 
                     icon="linkedin" 
                     text="Follow on LinkedIn"
-                    href="https://linkedin.com/in/your-profile" 
+                    href={CONTACT.linkedin} 
                   />
                   <SocialLink 
                     icon="github" 
                     text="Follow on GitHub"
-                    href="https://github.com/your-username" 
+                    href={CONTACT.github} 
                   />
                   <SocialLink 
                     icon="email" 
-                    text="stian.oek@gmail.com"
-                    href="mailto:stian.oek@gmail.com" 
+                    text={CONTACT.email}
+                    href={`mailto:${CONTACT.email}`} 
                   />
                 </motion.div>
               </div>

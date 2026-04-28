@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { CONTACT } from '@/constants/contact';
 
 // Validation schema matching the frontend
 const contactSchema = z.object({
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest) {
     
     await resend.emails.send({
       from: 'kontakt@yourdomain.com',
-      to: 'stian.oek@gmail.com',
+      to: CONTACT.email,
       subject: `Ny melding fra ${validatedData.name}`,
       html: `
         <h2>Ny melding fra kontaktskjema</h2>

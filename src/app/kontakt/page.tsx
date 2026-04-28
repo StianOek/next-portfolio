@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Icon from '@/components/Icon';
+import { CONTACT } from '@/constants/contact';
 
 export default function KontaktPage() {
   return (
@@ -40,13 +41,13 @@ export default function KontaktPage() {
                   spørsmål og forslag velkommen. Hvis du har et spesifikt spørsmål eller kommentar, 
                   vennligst send meg en e-post direkte på{' '}
                   <a
-                    href="mailto:stian.oek@gmail.com"
+                    href={`mailto:${CONTACT.email}`}
                     className="font-medium transition-colors"
                     style={{ color: 'var(--primary)' }}
                     onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
                     onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
                   >
-                    stian.oek@gmail.com
+                    {CONTACT.email}
                   </a>
                   . Jeg gjør mitt beste for å svare på alle meldinger innen 24 timer, selv om det 
                   kan ta lenger tid i travle perioder.
@@ -70,12 +71,12 @@ export default function KontaktPage() {
               <SocialLink 
                 icon="linkedin" 
                 text="Follow on LinkedIn"
-                href="https://linkedin.com/in/your-profile" 
+                href={CONTACT.linkedin} 
               />
               <SocialLink 
                 icon="github" 
                 text="Follow on GitHub"
-                href="https://github.com/your-username" 
+                href={CONTACT.github} 
               />
             </motion.div>
 
@@ -97,13 +98,13 @@ export default function KontaktPage() {
             >
               <Icon name="email" size={20} />
               <a
-                href="mailto:stian.oek@gmail.com"
+                href={`mailto:${CONTACT.email}`}
                 className="text-sm font-medium transition-colors"
                 style={{ color: 'var(--muted)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'var(--muted)'}
               >
-                stian.oek@gmail.com
+                {CONTACT.email}
               </a>
             </motion.div>
           </motion.div>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Icon from './Icon';
+import { CONTACT } from '@/constants/contact';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,7 +20,7 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex justify-center gap-6 mb-6">
             <motion.a
-              href="https://linkedin.com/in/your-profile"
+              href={CONTACT.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm transition-colors flex items-center gap-2"
@@ -34,7 +35,7 @@ export default function Footer() {
               <span>LinkedIn</span>
             </motion.a>
             <motion.a
-              href="https://github.com/your-username"
+              href={CONTACT.github}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm transition-colors flex items-center gap-2"
@@ -49,7 +50,7 @@ export default function Footer() {
               <span>GitHub</span>
             </motion.a>
             <motion.a
-              href="mailto:stian.oek@gmail.com"
+              href={`mailto:${CONTACT.email}`}
               className="text-sm transition-colors flex items-center gap-2"
               style={{ color: 'var(--muted)' }}
               whileHover={{ 
