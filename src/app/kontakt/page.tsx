@@ -76,12 +76,12 @@ export default function KontaktPage() {
               <div className="space-y-3">
                 <SocialLink 
                   icon="linkedin" 
-                  text="Follow on LinkedIn"
+                  text="Følg på LinkedIn"
                   href={CONTACT.linkedin} 
                 />
                 <SocialLink 
                   icon="github" 
-                  text="Follow on GitHub"
+                  text="Følg på GitHub"
                   href={CONTACT.github} 
                 />
               </div>

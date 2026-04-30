@@ -97,17 +97,14 @@ export default function OmMegPage() {
               <div className="relative w-full max-w-md mx-auto lg:max-w-none space-y-6">
                 {/* Image Container */}
                 <div className="relative aspect-square rounded-2xl overflow-hidden">
-                  {theme && (
-                    <Image
-                      key={theme}
-                      src={profileImage}
-                      alt="Stian Ihler"
-                      fill
-                      className="object-cover"
-                      quality={100}
-                      priority
-                    />
-                  )}
+                  <Image
+                    src="/me_original.png"
+                    alt="Stian Ihler"
+                    fill
+                    className="object-cover"
+                    quality={100}
+                    priority
+                  />
                 </div>
                 
                 {/* Social Links - Below Image */}

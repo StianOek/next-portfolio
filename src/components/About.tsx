@@ -1,10 +1,40 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { staggerContainer, staggerItem, viewportOptions } from '@/utils/animations';
 
 export default function About() {
+  const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
+
+  useEffect(() => {
+    // Get initial theme
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    setTheme(initialTheme);
+
+    // Listen for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const isDark = document.documentElement.classList.contains('dark');
+          setTheme(isDark ? 'dark' : 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const codingImage = theme === 'dark' ? '/me_coding_tierd.svg' : '/me_coding.svg';
+
   const scrollToUIUX = () => {
     const uiuxSection = document.getElementById('uiux');
     if (uiuxSection) {
@@ -83,14 +113,31 @@ export default function About() {
               viewport={viewportOptions}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
+              {/* Dark mode note */}
+              {theme === 'dark' && (
+                <motion.div
+                  className="mb-4 text-center"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <p className="text-sm italic" style={{ color: 'var(--muted)' }}>
+                    💤 Vekk meg ved å skru på dagmodus
+                  </p>
+                </motion.div>
+              )}
+
               <div className="relative aspect-square rounded-2xl overflow-hidden border border-default">
-                <Image
-                  src="/me_coding.svg"
-                  alt="Stian Ihler coding"
-                  fill
-                  className="object-cover"
-                  quality={100}
-                />
+                {theme && (
+                  <Image
+                    key={theme}
+                    src={codingImage}
+                    alt="Stian Ihler coding"
+                    fill
+                    className="object-cover"
+                    quality={100}
+                  />
+                )}
               </div>
             </motion.div>
           </div>
