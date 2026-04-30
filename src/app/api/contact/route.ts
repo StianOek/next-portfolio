@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     // Send email using Resend
     const result = await resend.emails.send({
-      from: 'Kontaktskjema <onboarding@resend.dev>', // Change to 'kontakt@yourdomain.com' after domain verification
+      from: 'Kontaktskjema <onboarding@resend.dev>', // TODO: Change to 'kontakt@stianiher.dev' after domain verification
       to: CONTACT.email,
       replyTo: validatedData.email,
       subject: `Ny melding fra ${validatedData.name}`,

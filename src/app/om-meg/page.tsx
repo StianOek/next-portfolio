@@ -119,12 +119,12 @@ export default function OmMegPage() {
                 >
                   <SocialLink 
                     icon="linkedin" 
-                    text="Follow on LinkedIn"
+                    text="Følg på LinkedIn"
                     href={CONTACT.linkedin} 
                   />
                   <SocialLink 
                     icon="github" 
-                    text="Follow on GitHub"
+                    text="Følg på GitHub"
                     href={CONTACT.github} 
                   />
                   <SocialLink 
@@ -133,6 +133,233 @@ export default function OmMegPage() {
                     href={`mailto:${CONTACT.email}`} 
                   />
                 </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Hockey Section - Polaroid Style */}
+        <div className="max-w-5xl mx-auto px-6 mt-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Left - Polaroid Image */}
+            <motion.div
+              className="relative order-2 lg:order-1"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Polaroid Frame */}
+              <div className="relative max-w-md mx-auto">
+                <motion.div
+                  className="relative bg-white p-4 pb-16 shadow-2xl"
+                  style={{
+                    transform: 'rotate(-2deg)',
+                  }}
+                  whileHover={{
+                    transform: 'rotate(0deg) scale(1.02)',
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {/* Image */}
+                  <div className="relative aspect-square bg-gray-100 overflow-hidden">
+                    <Image
+                      src="/me_hockey.png"
+                      alt="Stian spiller hockey"
+                      fill
+                      className="object-cover"
+                      quality={100}
+                    />
+                  </div>
+                  
+                  {/* Polaroid Caption */}
+                  <div className="absolute bottom-4 left-4 right-4 text-center">
+                    <p className="text-gray-700 font-handwriting text-lg" style={{ fontFamily: 'cursive' }}>
+                      På isen 🏒
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Tape effect on top */}
+                <div 
+                  className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-yellow-100 opacity-60"
+                  style={{
+                    transform: 'translateX(-50%) rotate(-1deg)',
+                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                  }}
+                />
+              </div>
+            </motion.div>
+
+            {/* Right Content */}
+            <motion.div
+              className="space-y-6 order-1 lg:order-2"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.h2 
+                className="text-3xl md:text-4xl font-bold leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+              >
+                Livet utenfor koden
+              </motion.h2>
+
+              <motion.div
+                className="space-y-4 text-base leading-relaxed"
+                style={{ color: 'var(--muted)' }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <p>
+                  Når jeg ikke sitter og gjør underverk med design og utvikling, er jeg å finne på en isbane 
+                  hvor jeg spiller <span className="text-foreground font-semibold">løkkehockey</span> av eller på isen.
+                </p>
+              </motion.div>
+
+              {/* Second Polaroid Image */}
+              <motion.div
+                className="relative mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <div className="relative max-w-sm mx-auto lg:mx-0">
+                  <motion.div
+                    className="relative bg-white p-4 pb-16 shadow-2xl"
+                    style={{
+                      transform: 'rotate(1.5deg)',
+                    }}
+                    whileHover={{
+                      transform: 'rotate(0deg) scale(1.02)',
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    {/* Image */}
+                    <div className="relative aspect-square bg-gray-100 overflow-hidden">
+                      <Image
+                        src="/me_hockey_2.png"
+                        alt="Hockey action"
+                        fill
+                        className="object-cover"
+                        quality={100}
+                      />
+                    </div>
+                    
+                    {/* Polaroid Caption */}
+                    <div className="absolute bottom-4 left-4 right-4 text-center">
+                      <p className="text-gray-700 font-handwriting text-lg" style={{ fontFamily: 'cursive' }}>
+                        Hygge ved bålet
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* Tape effect on corner */}
+                  <div 
+                    className="absolute -top-2 right-8 w-20 h-6 bg-yellow-100 opacity-60"
+                    style={{
+                      transform: 'rotate(45deg)',
+                      boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                    }}
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Running Section - Polaroid Style */}
+        <div className="max-w-5xl mx-auto px-6 mt-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Left Content */}
+            <motion.div
+              className="space-y-6"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.h2 
+                className="text-3xl md:text-4xl font-bold leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+              >
+                Mandagsløp med familien
+              </motion.h2>
+
+              <motion.div
+                className="space-y-4 text-base leading-relaxed"
+                style={{ color: 'var(--muted)' }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <p>
+                  Hver mandag jogger jeg <span className="text-foreground font-semibold">4 km</span> med 
+                  min lokale løpeklubb. Jeg synes det er gøy og fint å ta med barna på dette. 
+                  Det er en fin måte å starte uken på, og det holder meg i form.
+                </p>
+               
+              </motion.div>
+            </motion.div>
+
+            {/* Right - Polaroid Image */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Polaroid Frame */}
+              <div className="relative max-w-md mx-auto">
+                <motion.div
+                  className="relative bg-white p-4 pb-16 shadow-2xl"
+                  style={{
+                    transform: 'rotate(2deg)',
+                  }}
+                  whileHover={{
+                    transform: 'rotate(0deg) scale(1.02)',
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {/* Image */}
+                  <div className="relative aspect-square bg-gray-100 overflow-hidden">
+                    <Image
+                      src="/me_running.png"
+                      alt="Fredrikstad Løpe 5km"
+                      fill
+                      className="object-cover"
+                      quality={100}
+                    />
+                  </div>
+                  
+                  {/* Polaroid Caption */}
+                  <div className="absolute bottom-4 left-4 right-4 text-center">
+                    <p className="text-gray-700 font-handwriting text-lg" style={{ fontFamily: 'cursive' }}>
+                      Fredrikstad Løpe 5km 🏃
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Tape effect on side */}
+                <div 
+                  className="absolute top-1/2 -right-2 w-6 h-20 bg-yellow-100 opacity-60"
+                  style={{
+                    transform: 'translateY(-50%) rotate(2deg)',
+                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                  }}
+                />
               </div>
             </motion.div>
           </div>

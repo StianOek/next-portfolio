@@ -25,7 +25,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-left">
-              Fullstack & UI/UX
+              Fullstack
             </h2>
             <div className="w-20 h-1 bg-primary mt-4"></div>
           </motion.div>
@@ -108,7 +108,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-left">
-              UI/UX Design
+              UI/UX
             </h2>
             <div className="w-20 h-1 bg-primary mt-4"></div>
           </motion.div>
