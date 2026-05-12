@@ -42,7 +42,7 @@ export default function Hero() {
             ease: [0.22, 1, 0.36, 1]
           }}
         >
-          Fullstack utvikler & UI/UX entusiast
+          Utvikler med hjerte for faget
         </motion.p>
         
         <motion.div 

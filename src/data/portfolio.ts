@@ -1,6 +1,6 @@
 import { getScreenshotUrl } from '@/utils/screenshot';
 
-export interface Project {
+export interface PortfolioItem {
   slug: string;
   title: string;
   subtitle: string;
@@ -10,7 +10,7 @@ export interface Project {
   tags: string[];
   heroImage: string;
   images: string[];
-  mobileImages?: string[]; // New: separate mobile images
+  mobileImages?: string[];
   features: string[];
   technologies: {
     frontend: string[];
@@ -20,10 +20,10 @@ export interface Project {
   year: string;
   role: string;
   githubUrl?: string;
-  useDynamicScreenshot?: boolean; // New option
+  useDynamicScreenshot?: boolean;
 }
 
-export const projects: Project[] = [
+export const portfolioItems: PortfolioItem[] = [
   {
     slug: 'zeipt',
     title: 'Zeipt',
@@ -164,12 +164,12 @@ export const projects: Project[] = [
   },
 ];
 
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find(project => project.slug === slug);
+export function getPortfolioItemBySlug(slug: string): PortfolioItem | undefined {
+  return portfolioItems.find(item => item.slug === slug);
 }
 
-export function getFeaturedProjects(): Project[] {
-  return projects.filter(project => 
-    project.slug === 'zeipt' || project.slug === 'ihlenslk'
+export function getFeaturedPortfolioItems(): PortfolioItem[] {
+  return portfolioItems.filter(item => 
+    item.slug === 'zeipt' || item.slug === 'ihlenslk'
   );
 }

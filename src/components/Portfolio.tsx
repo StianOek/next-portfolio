@@ -3,18 +3,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { staggerContainer, staggerItem, hoverScale, tapScale, viewportOptions } from '@/utils/animations';
-import { Project } from '@/data/projects';
+import { staggerContainer, staggerItem, viewportOptions } from '@/utils/animations';
+import { PortfolioItem } from '@/data/portfolio';
 
-interface ProjectsProps {
-  projects: Project[];
+interface PortfolioProps {
+  portfolioItems: PortfolioItem[];
   showAll?: boolean;
   noPadding?: boolean;
+  title?: string;
 }
 
-export default function Projects({ projects, showAll = false, noPadding = false }: ProjectsProps) {
+export default function Portfolio({ portfolioItems, showAll = false, noPadding = false, title = 'Fremhevede prosjekter' }: PortfolioProps) {
   return (
-    <section id="projects" className={`px-6 bg-page ${noPadding ? '' : 'py-20'}`}>
+    <section id="portfolio" className={`px-6 bg-page ${noPadding ? '' : 'py-20'}`}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16"
@@ -24,7 +25,7 @@ export default function Projects({ projects, showAll = false, noPadding = false 
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-left">
-            Prosjekter
+            {title}
           </h2>
           <div className="w-20 h-1 bg-primary mt-4"></div>
         </motion.div>
@@ -36,7 +37,7 @@ export default function Projects({ projects, showAll = false, noPadding = false 
           whileInView="visible"
           viewport={viewportOptions}
         >
-          {projects.map((project, index) => (
+          {portfolioItems.map((item, index) => (
             <motion.div
               key={index}
               variants={staggerItem}
@@ -47,8 +48,8 @@ export default function Projects({ projects, showAll = false, noPadding = false 
                 className="relative h-64 flex flex-col items-center justify-center overflow-hidden"
               >
                 <Image
-                  src={project.heroImage}
-                  alt={project.title}
+                  src={item.heroImage}
+                  alt={item.title}
                   fill
                   className="object-cover transition-transform duration-500"
                 />
@@ -56,17 +57,17 @@ export default function Projects({ projects, showAll = false, noPadding = false 
               <div className="p-6">
                 <div className="mb-3">
                   <h3 className="text-2xl font-bold mb-1">
-                    {project.title}
+                    {item.title}
                   </h3>
                   <p className="text-sm text-muted">
-                    {project.subtitle}
+                    {item.subtitle}
                   </p>
                 </div>
                 <p className="mb-4 text-muted leading-relaxed">
-                  {project.description}
+                  {item.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, tagIndex) => (
+                  {item.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
                       className="px-3 py-1 text-xs font-medium rounded-full"
@@ -81,7 +82,7 @@ export default function Projects({ projects, showAll = false, noPadding = false 
                 </div>
                 <div className="flex gap-4">
                   <motion.a
-                    href={project.url}
+                    href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary px-4 py-2 rounded-lg text-sm font-medium inline-block cursor-pointer"
@@ -90,7 +91,7 @@ export default function Projects({ projects, showAll = false, noPadding = false 
                   >
                     Besøk nettside
                   </motion.a>
-                  <Link href={`/prosjekter/${project.slug}`}>
+                  <Link href={`/portfolio/${item.slug}`}>
                     <motion.button 
                       className="btn-secondary px-4 py-2 rounded-lg text-sm font-medium cursor-pointer"
                       whileHover={{ scale: 1.05 }}
@@ -113,13 +114,13 @@ export default function Projects({ projects, showAll = false, noPadding = false 
             viewport={viewportOptions}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Link href="/prosjekter">
+            <Link href="/portfolio">
               <motion.button
                 className="btn-primary px-8 py-3 rounded-lg text-base font-medium cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Se alle prosjekter
+                Se hele portfolio
               </motion.button>
             </Link>
           </motion.div>

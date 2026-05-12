@@ -128,7 +128,7 @@ export default function ContactForm() {
             borderColor: errors.message ? 'var(--primary)' : 'var(--border)',
             color: 'var(--foreground)',
           }}
-          placeholder="Fortell meg om prosjektet ditt, eller bare si hei..."
+          placeholder="Fortell meg om ideen din, eller bare si hei..."
         />
         {errors.message && (
           <motion.p

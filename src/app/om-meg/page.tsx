@@ -58,11 +58,7 @@ export default function OmMegPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
               >
-                Jeg er{' '}
-                <span style={{ color: 'var(--primary)' }}>
-                  Stian Ihler
-                </span>
-                . Jeg bor i Østfold, hvor jeg designer fremtiden.
+               Hvem er jeg?
               </motion.h1>
 
               {/* Description */}
@@ -74,16 +70,15 @@ export default function OmMegPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <p>
-                  Jeg har jobbet med en rekke prosjekter gjennom årene og er stolt av fremgangen jeg har gjort. 
-                  Mange av disse prosjektene er gjort for Zeipt AS, en bedrift som har bidratt til min karriære og som jeg er stolt av. Jeg jobber også som freelance for små bedrifter ved siden av.
+                  Jeg er en gutt fra 80-tallet, født og oppvokst i plankebyen Fredrikstad. Som barn ble jeg revet med av gjengen på MTV som kalte seg Jackass. Ambisjonene om å bli filmskaper — og en fyr som gjorde stunt og dummet seg ut foran kamera — var store. Jeg holdt fast ved den drømmen lenge, helt til livet en dag tok en ny retning, og jeg måtte starte på nytt i en ny by.
                 </p>
                 <p>
-                  Hvis du er interessert i noen av prosjektene jeg har jobbet med, kan du gjerne sjekke ut koden 
-                  og foreslå eventuelle forbedringer eller endringer som kan være nyttige. Det er kult!
+                  Noen år senere ble jeg med en kamerat hjem, og det var der jeg oppdaget noe som fasinerte meg langt inn i sjela. På den ene skjermen var det bare kaos av tekst og underlige tegn , men på den andre skjermen vokste det frem en flott, visuell og funksjonell nettside.
                 </p>
                 <p>
-                  Samarbeid med andre er en fin måte å lære og vokse på, og jeg er alltid åpen for nye ideer og tilbakemeldinger.
+                  Det var her eventyret innen utvikling startet. Siden den gang har jeg aldri sett meg tilbake. Jeg elsker ( på ekte ) å skape ting for web og mobil
                 </p>
+               
               </motion.div>
             </motion.div>
 
@@ -135,12 +130,44 @@ export default function OmMegPage() {
           </div>
         </div>
 
-        {/* Hockey Section - Polaroid Style */}
+        {/* Livet utenfor koden Section - Polaroid Style */}
         <div className="max-w-5xl mx-auto px-6 mt-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left - Polaroid Image */}
+          {/* Title and Text - Above images on mobile */}
+          <motion.div
+            className="mb-12 order-0"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold leading-tight mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              Livet utenfor koden
+            </motion.h2>
+
             <motion.div
-              className="relative order-2 lg:order-1"
+              className="space-y-4 text-base leading-relaxed max-w-3xl"
+              style={{ color: 'var(--muted)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <p>
+                I dag er jeg stolt av å kalle meg en samboer og en far til to flotte gutter. Når jeg ikke gjør underverk med utvikling så er jeg å finne på hockey banen eller på gårdsplassen (avhengig av sesongen) hvor jeg prøver å børste støv av gamle ferdigheter.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            {/* Left - Polaroid Image (Hygge ved bålet) */}
+            <motion.div
+              className="relative"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -161,8 +188,8 @@ export default function OmMegPage() {
                   {/* Image */}
                   <div className="relative aspect-square bg-gray-100 overflow-hidden">
                     <Image
-                      src="/me_hockey.png"
-                      alt="Stian spiller hockey"
+                      src="/me_hockey_2.png"
+                      alt="Hockey action"
                       fill
                       className="object-cover"
                       quality={100}
@@ -172,7 +199,7 @@ export default function OmMegPage() {
                   {/* Polaroid Caption */}
                   <div className="absolute bottom-4 left-4 right-4 text-center">
                     <p className="text-gray-700 font-handwriting text-lg" style={{ fontFamily: 'cursive' }}>
-                      På isen 🏒
+                      Hygge ved bålet
                     </p>
                   </div>
                 </motion.div>
@@ -188,129 +215,7 @@ export default function OmMegPage() {
               </div>
             </motion.div>
 
-            {/* Right Content */}
-            <motion.div
-              className="space-y-6 order-1 lg:order-2"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <motion.h2 
-                className="text-3xl md:text-4xl font-bold leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-              >
-                Livet utenfor koden
-              </motion.h2>
-
-              <motion.div
-                className="space-y-4 text-base leading-relaxed"
-                style={{ color: 'var(--muted)' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <p>
-                  Når jeg ikke sitter og gjør underverk med design og utvikling, er jeg å finne på en isbane 
-                  hvor jeg spiller <span className="text-foreground font-semibold">løkkehockey</span> av eller på isen.
-                </p>
-              </motion.div>
-
-              {/* Second Polaroid Image */}
-              <motion.div
-                className="relative mt-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                <div className="relative max-w-sm mx-auto lg:mx-0">
-                  <motion.div
-                    className="relative bg-white p-4 pb-16 shadow-2xl"
-                    style={{
-                      transform: 'rotate(1.5deg)',
-                    }}
-                    whileHover={{
-                      transform: 'rotate(0deg) scale(1.02)',
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    {/* Image */}
-                    <div className="relative aspect-square bg-gray-100 overflow-hidden">
-                      <Image
-                        src="/me_hockey_2.png"
-                        alt="Hockey action"
-                        fill
-                        className="object-cover"
-                        quality={100}
-                      />
-                    </div>
-                    
-                    {/* Polaroid Caption */}
-                    <div className="absolute bottom-4 left-4 right-4 text-center">
-                      <p className="text-gray-700 font-handwriting text-lg" style={{ fontFamily: 'cursive' }}>
-                        Hygge ved bålet
-                      </p>
-                    </div>
-                  </motion.div>
-
-                  {/* Tape effect on corner */}
-                  <div 
-                    className="absolute -top-2 right-8 w-20 h-6 bg-yellow-100 opacity-60"
-                    style={{
-                      transform: 'rotate(45deg)',
-                      boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
-                    }}
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Running Section - Polaroid Style */}
-        <div className="max-w-5xl mx-auto px-6 mt-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left Content */}
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <motion.h2 
-                className="text-3xl md:text-4xl font-bold leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-              >
-                Mandagsløp med familien
-              </motion.h2>
-
-              <motion.div
-                className="space-y-4 text-base leading-relaxed"
-                style={{ color: 'var(--muted)' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <p>
-                  Hver mandag jogger jeg <span className="text-foreground font-semibold">4 km</span> med 
-                  min lokale løpeklubb. Jeg synes det er gøy og fint å ta med barna på dette. 
-                  Det er en fin måte å starte uken på, og det holder meg i form.
-                </p>
-               
-              </motion.div>
-            </motion.div>
-
-            {/* Right - Polaroid Image */}
+            {/* Right - På isen image */}
             <motion.div
               className="relative"
               initial={{ opacity: 0, x: 30 }}
@@ -318,12 +223,11 @@ export default function OmMegPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Polaroid Frame */}
-              <div className="relative max-w-md mx-auto">
+              <div className="relative max-w-xs mx-auto lg:mx-0">
                 <motion.div
-                  className="relative bg-white p-4 pb-16 shadow-2xl"
+                  className="relative bg-white p-3 pb-12 shadow-2xl"
                   style={{
-                    transform: 'rotate(2deg)',
+                    transform: 'rotate(1.5deg)',
                   }}
                   whileHover={{
                     transform: 'rotate(0deg) scale(1.02)',
@@ -332,6 +236,58 @@ export default function OmMegPage() {
                 >
                   {/* Image */}
                   <div className="relative aspect-square bg-gray-100 overflow-hidden">
+                    <Image
+                      src="/me_hockey.png"
+                      alt="Stian spiller hockey"
+                      fill
+                      className="object-cover"
+                      quality={100}
+                    />
+                  </div>
+                  
+                  {/* Polaroid Caption */}
+                  <div className="absolute bottom-3 left-3 right-3 text-center">
+                    <p className="text-gray-700 font-handwriting text-base" style={{ fontFamily: 'cursive' }}>
+                      På isen 🏒
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Tape effect on corner */}
+                <div 
+                  className="absolute -top-2 right-8 w-20 h-6 bg-yellow-100 opacity-60"
+                  style={{
+                    transform: 'rotate(45deg)',
+                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                  }}
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Running Section */}
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="flex flex-col lg:flex-row gap-6 items-center max-w-3xl mx-auto">
+              {/* Polaroid Image */}
+              <div className="relative max-w-sm flex-shrink-0">
+                <motion.div
+                  className="relative bg-white p-4 pb-16 shadow-2xl"
+                  style={{
+                    transform: 'rotate(-1deg)',
+                  }}
+                  whileHover={{
+                    transform: 'rotate(0deg) scale(1.02)',
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {/* Image */}
+                  <div className="relative aspect-square bg-gray-100 overflow-hidden w-64">
                     <Image
                       src="/me_running.png"
                       alt="Fredrikstad Løpe 5km"
@@ -349,17 +305,30 @@ export default function OmMegPage() {
                   </div>
                 </motion.div>
 
-                {/* Tape effect on side */}
+                {/* Tape effect on top */}
                 <div 
-                  className="absolute top-1/2 -right-2 w-6 h-20 bg-yellow-100 opacity-60"
+                  className="absolute -top-3 left-1/4 w-24 h-6 bg-yellow-100 opacity-60"
                   style={{
-                    transform: 'translateY(-50%) rotate(2deg)',
+                    transform: 'rotate(-5deg)',
                     boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
                   }}
                 />
               </div>
-            </motion.div>
-          </div>
+
+              {/* Text beside image */}
+              <motion.div
+                className="flex-1"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <p className="text-base leading-relaxed italic" style={{ color: 'var(--muted)' }}>
+                  Ellers kan du se meg langs veien prøve å pushe grenser på Strava segmenter hver mandag.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </main>
       <Footer />

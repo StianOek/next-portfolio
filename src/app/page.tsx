@@ -1,19 +1,17 @@
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Projects from '@/components/Projects';
+import Portfolio from '@/components/Portfolio';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import { getFeaturedProjects } from '@/data/projects';
+import { getFeaturedPortfolioItems } from '@/data/portfolio';
 
 export default function Home() {
-  const featuredProjects = getFeaturedProjects();
+  const featuredPortfolioItems = getFeaturedPortfolioItems();
 
   return (
     <>
       <Navbar />
       <Hero />
-      <About />
-      <Projects projects={featuredProjects} />
+      <Portfolio title="Fremhevede prosjekter" portfolioItems={featuredPortfolioItems} />
       <Footer />
     </>
   );
