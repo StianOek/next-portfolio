@@ -102,29 +102,7 @@ export default function OmMegPage() {
                   />
                 </div>
                 
-                {/* Social Links - Below Image */}
-                <motion.div
-                  className="space-y-3"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                >
-                  <SocialLink 
-                    icon="linkedin" 
-                    text="Følg på LinkedIn"
-                    href={CONTACT.linkedin} 
-                  />
-                  <SocialLink 
-                    icon="github" 
-                    text="Følg på GitHub"
-                    href={CONTACT.github} 
-                  />
-                  <SocialLink 
-                    icon="email" 
-                    text={CONTACT.email}
-                    href={`mailto:${CONTACT.email}`} 
-                  />
-                </motion.div>
+              
               </div>
             </motion.div>
           </div>
