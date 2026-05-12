@@ -10,7 +10,7 @@ interface PortfolioSliderProps {
 
 export default function PortfolioSlider({ portfolioItems }: PortfolioSliderProps) {
   return (
-    <section className="py-20 px-6 bg-page">
+    <section className="px-6 bg-page">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16"
