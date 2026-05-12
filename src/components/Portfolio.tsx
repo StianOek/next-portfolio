@@ -91,15 +91,6 @@ export default function Portfolio({ portfolioItems, showAll = false, noPadding =
                   >
                     Besøk nettside
                   </motion.a>
-                  <Link href={`/portfolio/${item.slug}`}>
-                    <motion.button 
-                      className="btn-secondary px-4 py-2 rounded-lg text-sm font-medium cursor-pointer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Les mer
-                    </motion.button>
-                  </Link>
                 </div>
               </div>
             </motion.div>
