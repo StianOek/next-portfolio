@@ -105,7 +105,7 @@ export default function OmMegPage() {
                     {/* Image */}
                     <div className="relative aspect-square bg-gray-100 overflow-hidden">
                       <Image
-                        src="/barn_1.jpg"
+                        src="/barn_1.png"
                         alt="Stian Ihler"
                         fill
                         className="object-cover"
