@@ -31,7 +31,7 @@ export const portfolioItems: PortfolioItem[] = [
     description: 'Smart kvitteringsløsning som kobler banker, regnskapssystemer og lojalitetsprogrammer i ett samlet økosystem.',
     longDescription: 'Zeipt er en innovativ kvitteringsløsning som revolusjonerer måten vi håndterer digitale kvitteringer på. Plattformen kobler sømløst sammen banker, regnskapssystemer og lojalitetsprogrammer i ett samlet økosystem, og leverer automatisk detaljerte kvitteringer direkte til bankapper. Med Zeipt får både forbrukere og bedrifter full oversikt og kontroll over alle transaksjoner.',
     url: 'https://zeipt.com',
-    tags: ['Next.js', 'Tailwind', 'TypeScript'],
+    tags: ['Next.js', 'Tailwind', 'TypeScript', 'Framer-motion'],
     heroImage: getScreenshotUrl('https://zeipt.com'),
     images: [
       getScreenshotUrl('https://zeipt.com'),
@@ -61,7 +61,7 @@ export const portfolioItems: PortfolioItem[] = [
       backend: ['Node.js', 'PostgreSQL', 'REST API'],
       other: ['Vercel', 'Git', 'Figma'],
     },
-    year: '2023-2024',
+    year: '2024 - 2026',
     role: 'Fullstack Developer & UI/UX Designer',
   },
   {
@@ -71,11 +71,11 @@ export const portfolioItems: PortfolioItem[] = [
     description: 'Komplett dashboard for administrasjon og håndtering av digitale kvitteringer.',
     longDescription: 'Zeipt Dashboard er et kraftig administrasjonsverktøy som gir brukere full kontroll over sine digitale kvitteringer. Med avanserte filtreringsmuligheter, søkefunksjonalitet og detaljert statistikk, gjør dashboardet det enkelt å holde oversikt over alle transaksjoner. Systemet er bygget med fokus på ytelse og brukervennlighet.',
     url: 'https://dashboard.zeipt.com',
-    tags: ['React', 'TanStack Query', 'Tailwind'],
-    heroImage: getScreenshotUrl('https://dashboard.zeipt.com'),
+    tags: ['React', 'TanStack Query', 'Tailwind CSS', 'Typescript', 'Zustand', 'Framer-motion'],
+    heroImage: getScreenshotUrl('https://dashboard.zeipt.dev'),
     images: [
-      getScreenshotUrl('https://dashboard.zeipt.com'),
-      '/zeipt_receipt.png',
+      getScreenshotUrl('https://dashboard.zeipt.dev'),
+     
     ],
     useDynamicScreenshot: true,
     features: [
@@ -87,11 +87,11 @@ export const portfolioItems: PortfolioItem[] = [
       'Responsive design',
     ],
     technologies: {
-      frontend: ['React', 'TanStack Query', 'Tailwind CSS', 'TypeScript'],
+      frontend: ['React', 'TanStack Query', 'Tailwind CSS', 'TypeScript', 'framer-motion'],
       backend: ['REST API', 'WebSocket'],
       other: ['Vite', 'ESLint', 'Prettier'],
     },
-    year: '2024',
+    year: '2021 - 2023',
     role: 'Frontend Developer',
   },
   {
@@ -102,10 +102,10 @@ export const portfolioItems: PortfolioItem[] = [
     longDescription: 'Zeipt Receipt View er en elegant og brukervennlig løsning for visning av digitale kvitteringer. Med et moderne design og interaktive elementer, presenteres all relevant informasjon på en oversiktlig måte. Løsningen støtter både desktop og mobil, og gir brukerne en sømløs opplevelse uansett enhet.',
     url: 'https://view.zeipt.dev/users/019c052d-9486-8010-b4e7-66a5ce937580/receipts/019c052d-9486-8007-95a0-8496592d4928?email=sebastian%40zeipt.com',
     tags: ['Next.js', 'SCSS', 'TanStack Query'],
-    heroImage: '/zeipt_receipt.png',
+    heroImage: getScreenshotUrl('https://view.zeipt.dev/users/019e1c14-62a0-8010-81fc-c95f63d4f8ff/receipts/019e1c14-3735-8007-b2cb-bda56b1614f6'),
     images: [
-      '/zeipt_receipt.png',
-      '/zeipt_dashboard.png',
+      getScreenshotUrl('https://view.zeipt.dev/users/019e1c14-62a0-8010-81fc-c95f63d4f8ff/receipts/019e1c14-3735-8007-b2cb-bda56b1614f6'),
+      getScreenshotUrl('https://view.zeipt.dev/users/019c052d-9486-8010-b4e7-66a5ce937580/receipts/019c052d-9486-8007-95a0-8496592d4928?email=sebastian%40zeipt.com'),
     ],
     features: [
       'Detaljert produktvisning',
@@ -120,7 +120,7 @@ export const portfolioItems: PortfolioItem[] = [
       backend: ['Next.js API Routes'],
       other: ['Vercel', 'PostCSS'],
     },
-    year: '2024',
+    year: '2022 - 2026',
     role: 'Frontend Developer & Designer',
   },
   {
@@ -130,7 +130,7 @@ export const portfolioItems: PortfolioItem[] = [
     description: 'Lavterskel løpeklubb med fokus på løpeglede, fellesskap og kaffe etterpå.',
     longDescription: 'Ihlen Sosiale Løpeklubb er en inkluderende løpeklubb som samler løpere av alle nivåer i Indre Østfold. Med fokus på fellesskap, løpeglede og sosiale sammenkomster, tilbyr klubben ukentlige løpeturer etterfulgt av kaffe og hygge. Nettstedet gir medlemmer og interesserte full oversikt over aktiviteter, arrangementer og klubbinformasjon.',
     url: 'https://ihlenslk.no',
-    tags: ['Next.js', 'Neon', 'Tailwind'],
+    tags: ['Next.js', 'Typescript', 'Neon', 'Tailwind', 'Node.js', 'Framer-motion'],
     heroImage: getScreenshotUrl('https://ihlenslk.no'),
     images: [
       getScreenshotUrl('https://ihlenslk.no'),
@@ -158,7 +158,7 @@ export const portfolioItems: PortfolioItem[] = [
       backend: ['Neon PostgreSQL', 'Prisma', 'Next.js API'],
       other: ['Vercel', 'Git'],
     },
-    year: '2024',
+    year: '2025 - 2026',
     role: 'Fullstack Developer & Designer',
     githubUrl: 'https://github.com/StianOek/islk-nextjs-app',
   },

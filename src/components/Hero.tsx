@@ -24,13 +24,13 @@ export default function Hero() {
           <motion.span 
             style={{ color: 'var(--foreground)', display: 'inline-block' }}
           >
-            Stian
+          Utvikler'n fra
           </motion.span>
           {' '}
           <motion.span 
             style={{ color: 'var(--primary)', display: 'inline-block' }}
           >
-            Ihler
+            Bøgda
           </motion.span>
         </motion.h1>
         
@@ -44,7 +44,7 @@ export default function Hero() {
             ease: [0.22, 1, 0.36, 1]
           }}
         >
-          Utvikler med hjerte for faget
+         med hjerte for faget
         </motion.p>
         
         <motion.div 

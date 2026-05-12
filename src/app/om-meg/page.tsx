@@ -70,13 +70,13 @@ export default function OmMegPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <p>
-                  Jeg er en gutt fra 80-tallet, født og oppvokst i plankebyen Fredrikstad. Som barn ble jeg revet med av gjengen på MTV som kalte seg Jackass. Ambisjonene om å bli filmskaper — og en fyr som gjorde stunt og dummet seg ut foran kamera — var store. Jeg holdt fast ved den drømmen lenge, helt til livet en dag tok en ny retning, og jeg måtte starte på nytt i en ny by.
+                  Jeg er en gutt fra 80-tallet, født og oppvokst i plankebyen Fredrikstad. Som barn ble jeg revet med av gjengen på MTV som kalte seg Jackass. Ambisjonene om å bli filmskaper — og en fyr som gjorde stunt og dummet seg ut foran kamera — var store. Jeg holdt fast ved den drømmen lenge.
                 </p>
                 <p>
-                  Noen år senere ble jeg med en kamerat hjem, og det var der jeg oppdaget noe som fasinerte meg langt inn i sjela. På den ene skjermen var det bare kaos av tekst og underlige tegn , men på den andre skjermen vokste det frem en flott, visuell og funksjonell nettside.
+                  Noen år senere ble jeg introdusert til koding, og det var der jeg oppdaget noe som fasinerte meg langt inn i sjela. På den ene skjermen var det bare kaos av tekst og underlige tegn som var helt kryptisk for meg, men på den andre skjermen vokste det frem en flott, visuell og funksjonell nettside som blomstret.
                 </p>
                 <p>
-                  Det var her eventyret innen utvikling startet. Siden den gang har jeg aldri sett meg tilbake. Jeg elsker ( på ekte ) å skape ting for web og mobil
+                  Det var her eventyret innen utvikling startet. Siden den gang har jeg aldri sett meg tilbake. Jeg elsker ( på ekte ) å skape ting for web og mobil i et kontrollert miljø av <i>"kaos"</i>.
                 </p>
                
               </motion.div>
@@ -90,15 +90,45 @@ export default function OmMegPage() {
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="relative w-full max-w-md mx-auto lg:max-w-none space-y-6">
-                {/* Image Container */}
-                <div className="relative aspect-square rounded-2xl overflow-hidden">
-                  <Image
-                    src="/me_original.png"
-                    alt="Stian Ihler"
-                    fill
-                    className="object-cover"
-                    quality={100}
-                    priority
+                {/* Polaroid Image Container */}
+                <div className="relative max-w-md mx-auto">
+                  <motion.div
+                    className="relative bg-white p-4 pb-16 shadow-2xl"
+                    style={{
+                      transform: 'rotate(-2deg)',
+                    }}
+                    whileHover={{
+                      transform: 'rotate(0deg) scale(1.02)',
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    {/* Image */}
+                    <div className="relative aspect-square bg-gray-100 overflow-hidden">
+                      <Image
+                        src="/barn_1.jpg"
+                        alt="Stian Ihler"
+                        fill
+                        className="object-cover"
+                        quality={100}
+                        priority
+                      />
+                    </div>
+                    
+                    {/* Polaroid Caption */}
+                    <div className="absolute bottom-4 left-4 right-4 text-center">
+                      <p className="text-gray-700 font-handwriting text-lg" style={{ fontFamily: 'cursive' }}>
+                        Stian 📸
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* Tape effect on top */}
+                  <div 
+                    className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-yellow-100 opacity-60"
+                    style={{
+                      transform: 'translateX(-50%) rotate(-1deg)',
+                      boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                    }}
                   />
                 </div>
                 
