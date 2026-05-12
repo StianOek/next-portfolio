@@ -13,20 +13,22 @@ export default function Hero() {
       <div className="text-center">
         <motion.h1 
           className="text-5xl md:text-7xl font-bold mb-4"
-          variants={heroStaggerContainer}
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.8, 
+            delay: 0.2,
+            ease: [0.22, 1, 0.36, 1]
+          }}
         >
           <motion.span 
             style={{ color: 'var(--foreground)', display: 'inline-block' }}
-            variants={slideInFromLeft}
           >
             Stian
           </motion.span>
           {' '}
           <motion.span 
             style={{ color: 'var(--primary)', display: 'inline-block' }}
-            variants={slideInFromRight}
           >
             Ihler
           </motion.span>
