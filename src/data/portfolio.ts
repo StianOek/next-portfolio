@@ -62,7 +62,7 @@ export const portfolioItems: PortfolioItem[] = [
       other: ['Vercel', 'Git', 'Figma'],
     },
     year: '2024 - 2026',
-    role: 'Fullstack Developer & UI/UX Designer',
+    role: 'Frontend utvikler & UI/UX Designer',
   },
   {
     slug: 'zeipt-dashboard',
@@ -121,7 +121,7 @@ export const portfolioItems: PortfolioItem[] = [
       other: ['Vercel', 'PostCSS'],
     },
     year: '2022 - 2026',
-    role: 'Frontend Developer & Designer',
+    role: 'Frontend utvikler',
   },
   {
     slug: 'ihlenslk',
@@ -159,7 +159,7 @@ export const portfolioItems: PortfolioItem[] = [
       other: ['Vercel', 'Git'],
     },
     year: '2025 - 2026',
-    role: 'Fullstack Developer & Designer',
+    role: 'Fullstack utvikler & UI/UX Designer',
     githubUrl: 'https://github.com/StianOek/islk-nextjs-app',
   },
 ];
