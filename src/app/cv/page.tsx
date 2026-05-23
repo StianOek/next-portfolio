@@ -159,6 +159,37 @@ export default function CVPage() {
                   </li>
                 </ul>
               </div>
+
+              {/* Retro spill marketsplass */}
+              <div className="relative pl-8 border-l-2" style={{ borderColor: 'var(--border)' }}>
+                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full" style={{ backgroundColor: 'var(--primary)' }}></div>
+                <div className="mb-2 flex flex-wrap items-center gap-2">
+                  <span className="text-sm font-semibold px-2 py-1 rounded" style={{ backgroundColor: 'var(--secondary)', color: 'var(--muted)' }}>
+                    2022 - 2023
+                  </span>
+                  <span className="text-sm font-semibold px-2 py-1 rounded" style={{ backgroundColor: 'var(--secondary)', color: 'var(--primary)' }}>
+                    Skoleprosjekt
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Retro spill marketsplass - kryssplattform app</h3>
+                <p className="text-sm mb-3" style={{ color: 'var(--muted)' }}>
+                  VUE, TYPESCRIPT, IONIC, CAPACITOR, DIRECTUS, GRAPHQL
+                </p>
+                <ul className="space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>Designet og utviklet løsningen fra start til slutt</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>Autentisering og brukerflyt (innlogging, utlogging, profil etc.)</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>Bruk av Geolokasjon og google maps for å vise og registrere lokasjoner</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </motion.section>
 
@@ -218,7 +249,7 @@ export default function CVPage() {
                   Frontend
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'HTML/CSS', 'Figma'].map((tech) => (
+                  {['React', 'Vue', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'HTML/CSS', 'Figma', 'Ionic'].map((tech) => (
                     <span
                       key={tech}
                       className="px-3 py-1.5 rounded-lg text-sm font-medium border"
@@ -240,7 +271,7 @@ export default function CVPage() {
                   Backend
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'REST API', 'Prisma'].map((tech) => (
+                  {['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'Directus', 'REST API', 'Prisma'].map((tech) => (
                     <span
                       key={tech}
                       className="px-3 py-1.5 rounded-lg text-sm font-medium border"
@@ -262,7 +293,7 @@ export default function CVPage() {
                   Verktøy & Annet
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Git', 'GitHub', 'VS Code', 'Vercel', 'Docker'].map((tech) => (
+                  {['Git', 'GitHub', 'VS Code', 'Vercel', 'Docker', 'Capacitor' , 'Kryss-platform'].map((tech) => (
                     <span
                       key={tech}
                       className="px-3 py-1.5 rounded-lg text-sm font-medium border"
